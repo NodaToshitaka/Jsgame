@@ -4,8 +4,8 @@ var ctx = canvas.getContext("2d");
 var x = canvas.width/2;
 var y = canvas.height-30;
 
-var dx = 2;
-var dy = -2;
+var dx = 4;
+var dy = -4;
 
 var color = new Array("blue","red","green","yellow","purple")
 var i = 0
@@ -18,8 +18,8 @@ var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
 
-var brickRowCount = 3;
-var brickColumnCount = 3;
+var brickRowCount = 6;
+var brickColumnCount = 11;
 var brickWidth = 75;
 var brickHeight = 20;
 var brickPadding = 10;
@@ -148,6 +148,7 @@ function draw(){
         dy = dy + 0.2;
         dx = dx + 0.2;
         dy = -dy;
+        i = Math.floor(Math.random()*color.length)
       }
     }
     else {
@@ -160,8 +161,8 @@ function draw(){
       else {
         x = canvas.width/2;
         y = canvas.height-30;
-        dx = 2;
-        dy = -2;
+        dx = 4;
+        dy = -4;
         paddleX = (canvas.width-paddleWidth)/2;
       }
     }
