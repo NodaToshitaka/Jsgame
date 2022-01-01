@@ -12,6 +12,7 @@ class Sprite {
 
   update(canvas){
     this.render(canvas);
+		this.onenterframe();
   }
 
   render( canvas ) {
@@ -33,5 +34,6 @@ class Sprite {
 			this.width,
 			this.height
 		);
-	} 
+	}
+	onenterframe() {} 
 }
