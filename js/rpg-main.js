@@ -2,8 +2,23 @@
 
 addEventListener('load', () => {
   const game = new Game();
+  const map = [
+    [11,11,11,11,11,11,11,11,11,11],
+    [11,10,10,10,10,10,10,10,10,11],
+    [11, 4, 4, 4, 4, 4, 4, 4, 4,11],
+    [11, 4,11, 4, 4,11,11,11, 4,11],
+    [11, 4,11,11,11,11,10,10, 4,11],
+    [11, 4,11,10,10,11, 4, 4, 4,11],
+    [11, 4,11, 4, 4,11,11,11, 4,11],
+    [11, 4, 9, 4, 4, 9,10,11, 4,11],
+    [11, 4, 4, 4, 4, 4, 4,11, 4,11],
+    [11,11,11,11,11,11,11,11,11,11],
+  ];
   const WALKING_SPEED = 4;
   const scene = new Scene();
+  const tilemap = new Tilemap('img/tile.png');
+  tilemap.data = map;
+  scene.add(tilemap);
   const yamada = new Sprite('img/yamada.png');
   scene.add( yamada );
   scene.onenterframe = () => {
