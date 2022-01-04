@@ -14,18 +14,22 @@ addEventListener('load', () => {
     [11, 4, 4, 4, 4, 4, 4,11, 4,11],
     [11,11,11,11,11,11,11,11,11,11],
   ];
+  const TILE_SIZE = 32;
   const WALKING_SPEED = 4;
   const scene = new Scene();
   const tilemap = new Tilemap('img/tile.png');
   tilemap.data = map;
+  tilemap.x = TILE_SIZE*4 - TILE_SIZE/2;
+  tilemap.y = TILE_SIZE*3 - TILE_SIZE/2;
   scene.add(tilemap);
-  const yamada = new Sprite('img/yamada.png');
-  scene.add( yamada );
+  const yamada = new Tile('img/yamada.png');
+  yamada.x = yamada.y = TILE_SIZE*5 - TILE_SIZE/2;
+  tilemap.add( yamada );
   scene.onenterframe = () => {
-    if (game.input.left) yamada.x -= WALKING_SPEED;
-    if (game.input.right) yamada.x += WALKING_SPEED;
-    if (game.input.up) yamada.y -= WALKING_SPEED;
-    if (game.input.down) yamada.y += WALKING_SPEED;
+    if (game.input.left) tilemap.x += WALKING_SPEED;
+    if (game.input.right) tilemap.x -= WALKING_SPEED;
+    if (game.input.up) tilemap.y += WALKING_SPEED;
+    if (game.input.down) tilemap.y -= WALKING_SPEED;
   }
   game.add(scene);
   game.start();

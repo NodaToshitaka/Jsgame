@@ -7,10 +7,18 @@ class Tilemap {
     this.x = this.y = 0;
     this.size = size || 32;
     this.data = [];
+    this.tiles = [];
+  }
+  add(tile) {
+    if(tile instanceof Tile)this.tiles.push(tile);
+    else consol.error('Tilemapに追加できるのはTileだけだよ！')
   }
   update( canvas ) {
     this.render( canvas );
     this.onenterframe();
+    for(let i=0; i<this.tiles.length; i++) {
+      this.tiles[i].update(canvas);
+    }
   }
   render( canvas ) {
     for (let y=0; y<this.data.length; y++) {
@@ -27,10 +35,11 @@ class Tilemap {
           this.size * _frameX,
           this.size * _frameY,
           this.size,
+          this.size,
           _tileX,
           _tileY,
           this.size,
-          this.size,
+          this.size
         );
       }
     }
