@@ -26,10 +26,13 @@ addEventListener('load', () => {
   yamada.x = yamada.y = TILE_SIZE*5 - TILE_SIZE/2;
   tilemap.add( yamada );
   scene.onenterframe = () => {
-    if (game.input.left) tilemap.x += WALKING_SPEED;
-    if (game.input.right) tilemap.x -= WALKING_SPEED;
-    if (game.input.up) tilemap.y += WALKING_SPEED;
-    if (game.input.down) tilemap.y -= WALKING_SPEED;
+    if ((tilemap.x - TILE_SIZE/2) % TILE_SIZE === 0 && (tilemap.y - TILE_SIZE/2) % TILE_SIZE === 0) {
+      tilemap.vx = tilemap.vy = 0;
+      if (game.input.left) tilemap.vx = WALKING_SPEED;
+      if (game.input.right) tilemap.vx = -1 * WALKING_SPEED;
+      if (game.input.up) tilemap.vy = WALKING_SPEED;
+      if (game.input.down) tilemap.vy = -1 * WALKING_SPEED;
+    }
   }
   game.add(scene);
   game.start();
