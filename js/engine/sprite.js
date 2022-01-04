@@ -8,16 +8,20 @@ class Sprite {
 		this.width = width || 32;
 		this.height = height || 32;
 		this.frame = 0;
+		this.vx = this.vy = 0;
+		this.shiftX = this.shiftY = 0;
 	}
 
   update(canvas){
     this.render(canvas);
 		this.onenterframe();
+		this.x += this.vx;
+		this.y += this.vy;
   }
 
   render( canvas ) {
-		if ( this.x < -1 * this.width || this.x > canvas.width ) return;
-		if ( this.y < -1 * this.height || this.y > canvas.height ) return;
+		if ( this.x + this.shiftX < -1 * this.width || this.x + this.shiftX > canvas.width ) return;
+		if ( this.y + this.shiftY < -1 * this.height || this.y + this.shiftY > canvas.height ) return;
 
 		const _frameX = this.frame % ( this.img.width / this.width );
 		const _frameY = ~~( this.frame / ( this.img.width / this.width ) );
@@ -29,8 +33,8 @@ class Sprite {
 			this.height * _frameY,
 			this.width,
 			this.height,
-			this.x,
-			this.y,
+			this.x + this.shiftX,
+			this.y +this.shiftY,
 			this.width,
 			this.height
 		);

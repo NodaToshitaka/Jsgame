@@ -5,6 +5,7 @@ class Tilemap {
     this.img = new Image();
     this.img.src = img;
     this.x = this.y = 0;
+    this.vx = this.vy = 0;
     this.size = size || 32;
     this.data = [];
     this.tiles = [];
@@ -16,7 +17,11 @@ class Tilemap {
   update( canvas ) {
     this.render( canvas );
     this.onenterframe();
+    this.x += this.vx;
+		this.y += this.vy;
     for(let i=0; i<this.tiles.length; i++) {
+      this.tiles[i].shiftX = this.x;
+			this.tiles[i].shiftY = this.y;
       this.tiles[i].update(canvas);
     }
   }
